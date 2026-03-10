@@ -1,26 +1,22 @@
 .context-menu {
-  display: none;
-  font-family: 'Inter', sans-serif;
   position: fixed;
   background: #252525;
-  min-width: 170px;
-  color: rgba(255,255,255,0.4);
-  font-weight: 300;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
   border: 1px solid #333;
-  padding: 5px;
   border-radius: 10px;
+  padding: 5px;
+  min-width: 170px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
   z-index: 9999;
-  top: 0;
-  left: 0;
+  display: none;
+  font-family: 'Inter', sans-serif;
 }
 .context-menu-item {
-  cursor: pointer;
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  font-weight: 300;
   padding: 8px 11px;
   border-radius: 6px;
+  font-size: 12px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.4);
+  cursor: pointer;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -34,20 +30,20 @@
   color: #ffffff;
   text-shadow: 0 0 8px rgba(255,255,255,0.4);
 }
+.context-menu-item i { font-size: 13px; }
 .context-submenu {
+  padding-left: 8px;
   display: none;
-  position: absolute;
-  top: 0;
-  left: 100%;
-  font-family: 'Inter', sans-serif;
-  min-width: 170px;
-  font-weight: 300;
-  background: #252525;
-  border: 1px solid #333;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
-  padding: 5px;
-  border-radius: 10px;
-  z-index: 9999;
+  border-left: 1px solid #333;
+  margin: 2px 0 2px 10px;
+}
+.context-submenu.open { display: block; }
+.with-submenu::after {
+  content: '\F285';
+  font-family: 'bootstrap-icons';
+  margin-left: auto;
+  font-size: 10px;
+  opacity: 0.3;
 }
 .submenu-separator {
   border-bottom: 1px solid #333;

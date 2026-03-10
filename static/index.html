@@ -9,49 +9,277 @@
   <meta name="robots" content="noindex">
   <link rel="icon" id="icon" href="/assets/img/salyte.jpg">
   <script src="/assets/js/cdn-rocket.js?v=3" defer></script>
-  <link rel="stylesheet" href="/assets/css/app.css?v=3">
   <link rel="stylesheet" href="/assets/css/menu.css?v=3">
   <script rel="preload" src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js?v=3"></script>
   <script src="/assets/js/anym.js?v=3"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <title>Dashboard | Salyte</title>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6YEQ7Q0XRC"></script>
   <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-6YEQ7Q0XRC');</script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      background: #1e1e1e;
+      color: #d4d4d4;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+    }
+
+    /* ── NAV ── */
+    #mytopnav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding: 16px 28px;
+    }
+
+    .title {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 400;
+      color: #d4d4d4;
+      letter-spacing: 0.01em;
+    }
+    .title img {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+
+    .btn-main {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 12px;
+      background: transparent;
+      border: none;
+      border-radius: 6px;
+      color: #555;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 300;
+      cursor: pointer;
+      transition: color 0.15s;
+      letter-spacing: 0.01em;
+    }
+    .btn-main i { font-size: 13px; }
+    .btn-main:hover { color: #d4d4d4; }
+
+    /* ── MAIN ── */
+    .main-wrap {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 24px 80px;
+    }
+
+    /* ── SEARCH ── */
+    .search-wrap {
+      width: 100%;
+      max-width: 480px;
+    }
+
+    #uform { position: relative; }
+
+    .search-icon-wrap {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #444;
+      font-size: 14px;
+      pointer-events: none;
+      transition: color 0.2s;
+    }
+
+    .browse-input {
+      width: 100%;
+      padding: 13px 16px 13px 40px;
+      background: #2a2a2a;
+      border: 1px solid #333;
+      border-radius: 10px;
+      color: #d4d4d4;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .browse-input::placeholder { color: #444; }
+    .browse-input:focus {
+      border-color: #444;
+      background: #2e2e2e;
+    }
+
+    .splashText {
+      margin-top: 10px;
+      font-size: 11px;
+      color: #444;
+      text-align: center;
+      min-height: 16px;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── FOOTER ── */
+    .footer-links {
+      position: fixed;
+      bottom: 22px;
+      right: 24px;
+      display: flex;
+      gap: 6px;
+    }
+    .footer-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px; height: 30px;
+      color: #444;
+      font-size: 15px;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: #d4d4d4; }
+
+    .site-info-link {
+      position: fixed;
+      bottom: 24px;
+      left: 28px;
+      font-size: 11px;
+      color: #444;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: color 0.15s;
+    }
+    .site-info-link:hover { color: #d4d4d4; }
+
+    /* ── CONTEXT MENU ── */
+    .context-menu {
+      position: fixed;
+      background: #252525;
+      border: 1px solid #333;
+      border-radius: 10px;
+      padding: 5px;
+      min-width: 170px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+      z-index: 9999;
+      display: none;
+      font-family: 'Inter', sans-serif;
+    }
+    .context-menu-item {
+      padding: 8px 11px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 300;
+      color: #888;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.12s, color 0.12s;
+    }
+    .context-menu-item:hover { background: #2e2e2e; color: #d4d4d4; }
+    .context-menu-item i { font-size: 13px; }
+    .context-submenu {
+      padding-left: 8px;
+      display: none;
+      border-left: 1px solid #333;
+      margin: 2px 0 2px 10px;
+    }
+    .context-submenu.open { display: block; }
+    .with-submenu::after {
+      content: '\F285';
+      font-family: 'bootstrap-icons';
+      margin-left: auto;
+      font-size: 10px;
+      opacity: 0.3;
+    }
+  </style>
 </head>
 <body>
   <script src="/baremux/index.js?v=3"></script>
   <script src="/wk/wk2.js?v=3"></script>
   <script src="/wk/wk3.js?v=3"></script>
-<div id="contextMenu" class="context-menu themesExcluded" style="--ripple-duration: 300ms;"><div class="context-menu-item with-submenu themesExcluded" id="contextItem" anim="ripple" onclick="toggleSubmenu(event)"><i class="bi bi-file-spreadsheet"></i> Tab Cloak</div><div class="context-submenu themesExcluded" id="contextItem"><div class="context-menu-item themesExcluded" id="contextItem" anim="ripple" onclick="tabCloak()">Enable</div><div class="context-menu-item themesExcluded" anim="ripple" onclick="disableTabCloak()">Disable</div></div><div class="context-menu-item themesExcluded" id="contextItem" onclick="visitSite()"><i class="bi bi-clock-history"></i> Last Visited Site</div><div class="context-menu-item themesExcluded" id="contextItem" onclick="openWindow()"><i class="bi bi-box-arrow-up-right"></i> About:Blank Cloak</div><div class="context-menu-item themesExcluded" id="contextItem" onclick="openSettings()"><i class="bi bi-gear"></i> View all Settings</div></div>
-<nav id="mytopnav">
-  <button class="btn-main" anim="ripple" onclick="send('/settings.html')"><i class="bi bi-gear" style="font-size:30px;"></i>Settings</button>
-  <button class="btn-main" anim="ripple" onclick="send('/gms')"><i class="bi bi-joystick" style="font-size:30px;"></i>Games nd shit</button>
-  <button class="btn-main" anim="ripple" onclick="send('/apps')"><i class="bi bi-grid-fill" style="font-size:30px;"></i>Apps nd shit</button><br>
-  <a href="#" class="title" anim="ripple"><img src="/assets/img/doge2.jpg" style="width:22px;height:22px;" id="logo"> Eddie's unblocker</a>    
-</nav>
-  <div style="text-align:center;color:white;margin-top: 80px;z-index:1;" class="themesExcluded">
-    <div class="themesExcluded">
-      <i class="bi bi-search search" id="search"></i>
-      <form method="POST" id="uform" autocomplete="off" class="themesExcluded" style="z-index:1;">
-        <input type="text" name="url" class="browse-input themesExcluded" style="font-family:poppins;font-size:20px;z-index:1;" placeholder="Keep leeching retard"><p class="splashText themesExcluded" id="placeholder"></p>
-      </form>
+
+  <!-- Context Menu -->
+  <div id="contextMenu" class="context-menu themesExcluded" style="--ripple-duration: 300ms;">
+    <div class="context-menu-item with-submenu themesExcluded" id="contextItem" anim="ripple" onclick="toggleSubmenu(event)">
+      <i class="bi bi-file-spreadsheet"></i> Tab Cloak
     </div>
-    <div class="footer themesExcluded" style="text-align:right;">
-      <a href="https://discord.gg/sWPHCdxCPU" target="new"><i class="bi bi-discord"></i></a>
-      <a href="https://github.com/dogenetwork/v4" target="new"><i class="bi bi-github"></i></a>
+    <div class="context-submenu themesExcluded" id="contextItem">
+      <div class="context-menu-item themesExcluded" id="contextItem" anim="ripple" onclick="tabCloak()">Enable</div>
+      <div class="context-menu-item themesExcluded" anim="ripple" onclick="disableTabCloak()">Disable</div>
     </div>
-    <div class="bottom-right-content themesExcluded">
-    <a href="/info">Site Info</a>
+    <div class="context-menu-item themesExcluded" id="contextItem" onclick="visitSite()">
+      <i class="bi bi-clock-history"></i> Last Visited Site
+    </div>
+    <div class="context-menu-item themesExcluded" id="contextItem" onclick="openWindow()">
+      <i class="bi bi-box-arrow-up-right"></i> About:Blank Cloak
+    </div>
+    <div class="context-menu-item themesExcluded" id="contextItem" onclick="openSettings()">
+      <i class="bi bi-gear"></i> View all Settings
+    </div>
   </div>
+
+  <!-- Nav -->
+  <nav id="mytopnav">
+    <button class="btn-main" anim="ripple" onclick="send('/settings.html')">
+      <i class="bi bi-gear"></i> Settings
+    </button>
+    <button class="btn-main" anim="ripple" onclick="send('/gms')">
+      <i class="bi bi-joystick"></i> Games nd shit
+    </button>
+    <button class="btn-main" anim="ripple" onclick="send('/apps')">
+      <i class="bi bi-grid-fill"></i> Apps nd shit
+    </button>
+    <a href="#" class="title" anim="ripple">
+      <img src="/assets/img/doge2.jpg" id="logo">
+      Eddie's unblocker
+    </a>
+  </nav>
+
+  <!-- Main -->
+  <div class="main-wrap themesExcluded">
+    <div class="search-wrap themesExcluded">
+      <form method="POST" id="uform" autocomplete="off" class="themesExcluded">
+        <span class="search-icon-wrap"><i class="bi bi-search" id="search"></i></span>
+        <input
+          type="text"
+          name="url"
+          class="browse-input themesExcluded"
+          placeholder="Keep leeching retard"
+        >
+      </form>
+      <p class="splashText themesExcluded" id="placeholder"></p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer-links themesExcluded">
+    <a href="https://discord.gg/sWPHCdxCPU" target="_blank"><i class="bi bi-discord"></i></a>
+    <a href="https://github.com/dogenetwork/v4" target="_blank"><i class="bi bi-github"></i></a>
+  </div>
+  <a href="/info" class="site-info-link themesExcluded">Site Info</a>
+
   <script src="/assets/js/main.js?v=3"></script>
   <script src="/assets/js/index.js?v=3"></script>
   <script src="/assets/js/themes.js?v=3"></script>
   <script src="/assets/js/particles.js?v=3"></script>
   <script src="/assets/js/register.js?v=3" defer></script>
- <!-- <script type='text/javascript' src='//cogentselfish.com/cc/1e/f1/cc1ef15b8ddac4fa79288c68db740550.js'></script>-->
   <script type='text/javascript' src='//cogentselfish.com/a1/87/68/a187684b9f023e7b2684450a755b623e.js'></script>
-</div>
 </body>
 </html>
-
-
-

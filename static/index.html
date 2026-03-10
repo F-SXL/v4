@@ -26,7 +26,7 @@
     html, body {
       height: 100%;
       background: #1e1e1e;
-      color: #d4d4d4;
+      color: #ffffff;
       font-family: 'Inter', sans-serif;
       font-weight: 300;
     }
@@ -50,13 +50,14 @@
       text-decoration: none;
       font-size: 13px;
       font-weight: 400;
-      color: #d4d4d4;
+      color: #ffffff;
+      text-shadow: 0 0 12px rgba(255,255,255,0.6);
       letter-spacing: 0.01em;
     }
     .title img {
       width: 18px; height: 18px;
       border-radius: 50%;
-      opacity: 0.5;
+      opacity: 0.7;
     }
 
     .btn-main {
@@ -67,16 +68,20 @@
       background: transparent;
       border: none;
       border-radius: 6px;
-      color: #555;
+      color: #ffffff;
+      text-shadow: 0 0 10px rgba(255,255,255,0.5);
       font-family: 'Inter', sans-serif;
       font-size: 12px;
       font-weight: 300;
       cursor: pointer;
-      transition: color 0.15s;
+      transition: color 0.15s, text-shadow 0.15s;
       letter-spacing: 0.01em;
     }
     .btn-main i { font-size: 13px; }
-    .btn-main:hover { color: #d4d4d4; }
+    .btn-main:hover {
+      color: #ffffff;
+      text-shadow: 0 0 16px rgba(255,255,255,0.9);
+    }
 
     /* ── MAIN ── */
     .main-wrap {
@@ -101,10 +106,15 @@
       left: 14px;
       top: 50%;
       transform: translateY(-50%);
-      color: #444;
+      color: rgba(255,255,255,0.25);
       font-size: 14px;
       pointer-events: none;
-      transition: color 0.2s;
+      transition: color 0.2s, text-shadow 0.2s;
+    }
+
+    #uform:focus-within .search-icon-wrap {
+      color: rgba(255,255,255,0.7);
+      text-shadow: 0 0 8px rgba(255,255,255,0.4);
     }
 
     .browse-input {
@@ -113,59 +123,32 @@
       background: #2a2a2a;
       border: 1px solid #333;
       border-radius: 10px;
-      color: #d4d4d4;
+      color: #ffffff;
       font-family: 'Inter', sans-serif;
       font-size: 14px;
       font-weight: 300;
       outline: none;
-      transition: border-color 0.2s, background 0.2s;
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+      text-shadow: 0 0 8px rgba(255,255,255,0.3);
     }
-    .browse-input::placeholder { color: #444; }
+    .browse-input::placeholder {
+      color: rgba(255,255,255,0.2);
+      text-shadow: none;
+    }
     .browse-input:focus {
-      border-color: #444;
+      border-color: rgba(255,255,255,0.2);
       background: #2e2e2e;
+      box-shadow: 0 0 20px rgba(255,255,255,0.04);
     }
 
     .splashText {
       margin-top: 10px;
       font-size: 11px;
-      color: #444;
+      color: rgba(255,255,255,0.25);
       text-align: center;
       min-height: 16px;
       letter-spacing: 0.03em;
     }
-
-    /* ── FOOTER ── */
-    .footer-links {
-      position: fixed;
-      bottom: 22px;
-      right: 24px;
-      display: flex;
-      gap: 6px;
-    }
-    .footer-links a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 30px; height: 30px;
-      color: #444;
-      font-size: 15px;
-      text-decoration: none;
-      transition: color 0.15s;
-    }
-    .footer-links a:hover { color: #d4d4d4; }
-
-    .site-info-link {
-      position: fixed;
-      bottom: 24px;
-      left: 28px;
-      font-size: 11px;
-      color: #444;
-      text-decoration: none;
-      letter-spacing: 0.03em;
-      transition: color 0.15s;
-    }
-    .site-info-link:hover { color: #d4d4d4; }
 
     /* ── CONTEXT MENU ── */
     .context-menu {
@@ -185,14 +168,18 @@
       border-radius: 6px;
       font-size: 12px;
       font-weight: 300;
-      color: #888;
+      color: rgba(255,255,255,0.4);
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 8px;
-      transition: background 0.12s, color 0.12s;
+      transition: background 0.12s, color 0.12s, text-shadow 0.12s;
     }
-    .context-menu-item:hover { background: #2e2e2e; color: #d4d4d4; }
+    .context-menu-item:hover {
+      background: #2e2e2e;
+      color: #ffffff;
+      text-shadow: 0 0 8px rgba(255,255,255,0.4);
+    }
     .context-menu-item i { font-size: 13px; }
     .context-submenu {
       padding-left: 8px;
@@ -267,13 +254,6 @@
       <p class="splashText themesExcluded" id="placeholder"></p>
     </div>
   </div>
-
-  <!-- Footer -->
-  <div class="footer-links themesExcluded">
-    <a href="https://discord.gg/sWPHCdxCPU" target="_blank"><i class="bi bi-discord"></i></a>
-    <a href="https://github.com/dogenetwork/v4" target="_blank"><i class="bi bi-github"></i></a>
-  </div>
-  <a href="/info" class="site-info-link themesExcluded">Site Info</a>
 
   <script src="/assets/js/main.js?v=3"></script>
   <script src="/assets/js/index.js?v=3"></script>

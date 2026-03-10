@@ -1,6 +1,11 @@
 [
   {
-    "name": "Google",
+    "name": "Kaido",
+    "imageUrl": "/assets/img/google-icon.webp",
+    "url": "openAg('https://kaido.to')"
+  },
+  {
+    "name": "kian piahana is a jew",
     "imageUrl": "/assets/img/google-icon.webp",
     "url": "openAg('https://google.com')"
   },

@@ -5,15 +5,12 @@
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
   </script>
   <script defer src="/_vercel/insights/script.js"></script>
-  <link rel="icon" id="icon" href="/assets/img/salyte.jpg">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
-  <link rel="stylesheet" href="/assets/css/gms.css?v=3">
-  <link rel="stylesheet" href="/assets/css/app.css?v=3">
+  <link rel="icon" id="icon" href="/assets/img/salyte.jpg">
+  <script src="/assets/js/cdn-rocket.js?v=3" defer></script>
   <link rel="stylesheet" href="/assets/css/menu.css?v=3">
   <script rel="preload" src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js?v=3"></script>
-  <script src="/assets/js/particles.js?v=3"></script>
-  <script src="/assets/js/cdn-rocket.js?v=3"></script>
   <script src="/assets/js/anym.js?v=3"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,7 +24,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html, body {
-      min-height: 100%;
+      height: 100%;
       background: #1e1e1e;
       color: #ffffff;
       font-family: 'Inter', sans-serif;
@@ -87,21 +84,23 @@
       text-shadow: 0 0 16px rgba(255,255,255,0.9);
     }
 
-    /* ── PAGE BODY ── */
-    .page-wrap {
-      padding: 96px 24px 80px;
-      max-width: 960px;
-      margin: 0 auto;
+    /* ── MAIN ── */
+    .main-wrap {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 24px 80px;
     }
 
     /* ── SEARCH ── */
     .search-wrap {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 32px;
+      width: 100%;
+      max-width: 480px;
     }
 
-    #searchForm { position: relative; width: 100%; max-width: 480px; }
+    #uform { position: relative; }
 
     .search-icon-wrap {
       position: absolute;
@@ -114,12 +113,12 @@
       transition: color 0.2s, text-shadow 0.2s;
     }
 
-    #searchForm:focus-within .search-icon-wrap {
+    #uform:focus-within .search-icon-wrap {
       color: rgba(255,255,255,0.7);
       text-shadow: 0 0 8px rgba(255,255,255,0.4);
     }
 
-    #searchApps {
+    .browse-input {
       width: 100%;
       padding: 13px 16px 13px 40px;
       background: #2a2a2a;
@@ -133,26 +132,23 @@
       transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
       text-shadow: 0 0 8px rgba(255,255,255,0.3);
     }
-    #searchApps::placeholder {
+    .browse-input::placeholder {
       color: rgba(255,255,255,0.2);
       text-shadow: none;
     }
-    #searchApps:focus {
+    .browse-input:focus {
       border-color: rgba(255,255,255,0.2);
       background: #2e2e2e;
       box-shadow: 0 0 20px rgba(255,255,255,0.04);
     }
 
-    /* ── MESSAGES ── */
-    #searchMessage,
-    #fetchMessage {
-      text-align: center;
-      font-size: 13px;
+    .splashText {
+      margin-top: 10px;
+      font-size: 11px;
       color: rgba(255,255,255,0.25);
-      font-family: 'Inter', sans-serif;
-      font-weight: 300;
+      text-align: center;
+      min-height: 16px;
       letter-spacing: 0.03em;
-      margin: 20px 0;
     }
 
     /* ── CONTEXT MENU ── */
@@ -200,9 +196,30 @@
       font-size: 10px;
       opacity: 0.3;
     }
+
+    /* ── GAMES GRID ── */
+    .search-results {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1em;
+      margin-top: 32px;
+    }
+
+    #searchMessage,
+    #fetchMessage {
+      text-align: center;
+      font-size: 13px;
+      color: rgba(255,255,255,0.25);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      letter-spacing: 0.03em;
+      margin: 20px 0;
+    }
   </style>
 </head>
 <body>
+  <script src="/wk/wk2.js?v=3"></script>
 
   <!-- Context Menu -->
   <div id="contextMenu" class="context-menu themesExcluded" style="--ripple-duration: 300ms;">
@@ -242,12 +259,18 @@
   </nav>
 
   <!-- Main -->
-  <div class="page-wrap">
+  <div class="main-wrap themesExcluded">
     <div class="search-wrap themesExcluded">
-      <form id="searchForm" onsubmit="return false;" autocomplete="off" class="themesExcluded">
+      <form id="uform" onsubmit="return false;" autocomplete="off" class="themesExcluded">
         <span class="search-icon-wrap"><i class="bi bi-search" id="search"></i></span>
-        <input id="searchApps" class="themesExcluded" placeholder="Search for games">
+        <input
+          type="text"
+          id="searchApps"
+          class="browse-input themesExcluded"
+          placeholder="Search for games"
+        >
       </form>
+      <p class="splashText themesExcluded" id="placeholder"></p>
     </div>
 
     <div class="search-results themesExcluded" id="gmsContainer"></div>
@@ -255,10 +278,10 @@
     <div id="fetchMessage" class="themesExcluded" style="display:block;">Loading assets...</div>
   </div>
 
-  <script src="/wk/wk2.js?v=3"></script>
   <script src="/assets/js/themes.js?v=3"></script>
   <script src="/assets/js/ag.js?v=3"></script>
   <script src="/assets/js/gms.js?v=3"></script>
   <script src="/assets/js/main.js?v=3"></script>
+  <script src="/assets/js/particles.js?v=3"></script>
 </body>
 </html>

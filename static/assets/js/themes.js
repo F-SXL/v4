@@ -15,22 +15,10 @@ function live() {
   if(bgUrl === null || bgUrl === 'none' || bgUrl === '') {
     switch(selectedTheme) {
       case 'deepsea':
-        applyTheme('rgba(19, 34, 48, 0.8)', "linear-gradient(to bottom right, rgb(16, 52, 82), rgb(9, 34, 55), black)");
-        break;
-      case 'equinox':
-        applyTheme('rgb(24 24 24 / 32%)', "url('/assets/img/equinox.webp')");
-        document.querySelectorAll('input').forEach(inputElement => {
-          inputElement.style.transition = '.2s';
-          inputElement.style.backgroundColor = 'rgba(15, 15, 15, 0.89)';
-          inputElement.style.boxShadow = '0 0 1px rgba(255, 255, 255, 0.267)';
-          inputElement.style.opacity = '100%';
-        });
-        break;
-      case 'swamp':
-        applyTheme('rgba(30, 30, 30, 0.705)', "linear-gradient(to bottom, rgb(33, 116, 47), rgb(0, 0, 0))");
+        applyTheme('rgba(30, 30, 30, 0.8)', "linear-gradient(to bottom right, rgb(40, 40, 40), rgb(25, 25, 25), black)");
         break;
       default:
-        applyTheme('rgba(30, 30, 30, 0.705)', "linear-gradient(to bottom right, rgb(16, 52, 82), rgb(9, 34, 55), black)");
+        applyTheme('rgba(30, 30, 30, 0.8)', "linear-gradient(to bottom right, rgb(40, 40, 40), rgb(25, 25, 25), black)");;
     }
   }
   /* Ripple Effect for buttons */

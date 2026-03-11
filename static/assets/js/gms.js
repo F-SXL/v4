@@ -24,21 +24,24 @@ function addGms(name, imageUrl, gameUrl, width, height) {
   linkElement.className = "square_btn";
   linkElement.onclick = function() {
     function launch() {
-      eval(gameUrl); // apps and gms use own function
+      eval(gameUrl);
     }
     launch();
   };
-  if (width) {
-    linkElement.style.width = width + 'px';
-  }
-  if (height) {
-    linkElement.style.height = height + 'px';
-  }
+
+  // Force uniform size — ignore JSON width/height
+  linkElement.style.width = '115px';
+  linkElement.style.height = '115px';
+
   var imageElement = document.createElement('img');
   imageElement.className = "rounded";
   imageElement.src = imageUrl;
   imageElement.alt = name;
   imageElement.draggable = false;
+  imageElement.style.width = '95px';
+  imageElement.style.height = '95px';
+  imageElement.style.objectFit = 'cover';
+
   var brElement = document.createElement('br');
   var textElement = document.createTextNode(name);
   linkElement.appendChild(imageElement);
@@ -55,7 +58,6 @@ fetch('/data/g-list.json').then(response => {
 }).then(data => {
   const fetchMessage = document.getElementById('fetchMessage');
   let totalGames = 0;
-
   for (let category in data) {
     if (data.hasOwnProperty(category)) {
       const games = data[category];
@@ -66,10 +68,8 @@ fetch('/data/g-list.json').then(response => {
       });
     }
   }
-
   const searchBar = document.querySelector('.searchbar');
   searchBar.placeholder = 'Search ' + totalGames + ' games';
-
   if (fetchMessage) {
     fetchMessage.style.display = 'none';
   }
@@ -92,8 +92,7 @@ document.getElementById('searchApps').addEventListener('input', function(event) 
     if (linkText.includes(query)) {
       link.style.display = 'block';
       foundResults = true;
-    }
-    else {
+    } else {
       link.style.display = 'none';
     }
   }
@@ -101,15 +100,13 @@ document.getElementById('searchApps').addEventListener('input', function(event) 
   if (!foundResults) {
     message.innerText = 'No Results Found.';
     message.style.display = 'block';
-  }
-  else {
+  } else {
     message.style.display = 'none';
   }
 });
 
 var searchBar = document.querySelector('.searchbar');
 var searchIcon = document.getElementById('search');
-
 const defaultPlaceholder = 'Search for games';
 
 searchBar.addEventListener('focus', () => {

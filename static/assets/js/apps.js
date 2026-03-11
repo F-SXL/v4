@@ -24,21 +24,24 @@ function addApp(name, imageUrl, appUrl, width, height) {
   linkElement.className = "square_btn";
   linkElement.onclick = function() {
     function launch() {
-      eval(appUrl); // apps and gms use own function
-   }
+      eval(appUrl);
+    }
     launch();
   };
-  if (width) {
-    linkElement.style.width = width + 'px';
-  }
-  if (height) {
-    linkElement.style.height = height + 'px';
-  }
+
+  // Force uniform size — ignore JSON width/height
+  linkElement.style.width = '115px';
+  linkElement.style.height = '115px';
+
   var imageElement = document.createElement('img');
   imageElement.className = "rounded";
   imageElement.src = imageUrl;
   imageElement.alt = name;
   imageElement.draggable = false;
+  imageElement.style.width = '95px';
+  imageElement.style.height = '95px';
+  imageElement.style.objectFit = 'cover';
+
   var brElement = document.createElement('br');
   var textElement = document.createTextNode(name);
   linkElement.appendChild(imageElement);
@@ -70,7 +73,6 @@ fetch('/data/a-list.json').then(response => {
   }
 });
 
-// Search Bar
 document.getElementById('searchApps').addEventListener('input', function(event) {
   const query = this.value.toLowerCase();
   const links = document.getElementsByClassName('search-results')[0].getElementsByTagName('a');
@@ -96,11 +98,13 @@ document.getElementById('searchApps').addEventListener('input', function(event) 
 
 var searchBar = document.querySelector('.searchbar');
 var searchIcon = document.getElementById('search');
+
 searchBar.addEventListener('focus', () => {
   searchIcon.style.marginLeft = '20px';
   searchBar.placeholder = '';
   searchBar.style.textAlign = 'left';
 });
+
 searchBar.addEventListener('blur', () => {
   searchIcon.style.marginLeft = '147px';
   searchBar.placeholder = 'Search for apps';

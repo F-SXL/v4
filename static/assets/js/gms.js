@@ -29,9 +29,13 @@ function addGms(name, imageUrl, gameUrl, width, height) {
     launch();
   };
 
-  // Force uniform size — ignore JSON width/height
   linkElement.style.width = '115px';
-  linkElement.style.height = '115px';
+  linkElement.style.height = '140px';
+  linkElement.style.display = 'flex';
+  linkElement.style.flexDirection = 'column';
+  linkElement.style.alignItems = 'center';
+  linkElement.style.justifyContent = 'center';
+  linkElement.style.padding = '10px 8px';
 
   var imageElement = document.createElement('img');
   imageElement.className = "rounded";
@@ -42,11 +46,25 @@ function addGms(name, imageUrl, gameUrl, width, height) {
   imageElement.style.height = '95px';
   imageElement.style.objectFit = 'cover';
 
-  var brElement = document.createElement('br');
-  var textElement = document.createTextNode(name);
+  var labelElement = document.createElement('span');
+  labelElement.innerText = name;
+  labelElement.style.cssText = `
+    display: block;
+    margin-top: 7px;
+    font-size: 10px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.03em;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  `;
+
   linkElement.appendChild(imageElement);
-  linkElement.appendChild(brElement);
-  linkElement.appendChild(textElement);
+  linkElement.appendChild(labelElement);
   gmsContainer.appendChild(linkElement);
 }
 

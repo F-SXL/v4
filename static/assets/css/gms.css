@@ -6,11 +6,14 @@
     opacity: 1;
 }
 .square_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     height: 115px;
     width: 115px;
     margin: 0;
-    padding: 30px;
+    padding: 10px;
     text-decoration: none;
     border: 1px solid transparent;
     border-radius: 10px;
@@ -23,8 +26,11 @@
     transform: scale(1.06);
 }
 .square_btn img {
-    width: 103px;
-    height: 103px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
 }
 .rounded {
     border-radius: 10px;
